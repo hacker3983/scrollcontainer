@@ -95,7 +95,10 @@ void app_run(app_t* app) {
 			if(app->event.type == SDL_QUIT) {
 				app->quit = true;
 			} else if(app->event.type == SDL_MOUSEWHEEL) {
-				if(app->event.wheel.y < 0) {
+				content_t* content_list = app->content_list;
+				size_t max_contentidx = app->content_count-1;
+				SDL_Rect canvas = content_list[max_contentidx].canvas;
+				if(app->event.wheel.y < 0 && scroll_container->item_renderpos + scroll_container->item_count < app->content_count) {
 					scrollcontainer_performscroll(scroll_container, SCROLL_DOWN, 15);
 					puts("Scrolling Down");
 				} else if(app->event.wheel.y > 0) {

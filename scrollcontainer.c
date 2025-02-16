@@ -1,4 +1,4 @@
-#include "scroll.h"
+#include "scrollcontainer.h"
 
 void scrollcontainer_init(scrollcontainer_t* scroll_container) {
 	scroll_container->init = true;
@@ -62,6 +62,7 @@ void scrollcontainer_performscroll(scrollcontainer_t* scroll_container, int scro
 			}
 		} else if(scroll_container->item_renderpos) {
 			scroll_container->item_renderpos--;
+			scroll_container->scroll_y = scroll_area.y;
 		}
 	}
 }
